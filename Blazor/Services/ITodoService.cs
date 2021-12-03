@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Domain.Models;
+﻿using Domain.Models;
 
-namespace Blazor.Services{
+namespace Blazor.Services;
 
 public interface ITodoService
 {
@@ -11,4 +9,4 @@ public interface ITodoService
     public Task<Todo> AddAsync(Todo todo);
     public Task DeleteAsync(int id);
     public Task UpdateAsync(Todo todo);
-}}
+}
