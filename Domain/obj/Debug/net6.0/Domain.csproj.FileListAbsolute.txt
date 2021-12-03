@@ -1,0 +1,12 @@
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\bin\Debug\net6.0\Domain.deps.json
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\bin\Debug\net6.0\Domain.dll
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\bin\Debug\net6.0\ref\Domain.dll
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\bin\Debug\net6.0\Domain.pdb
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\obj\Debug\net6.0\Domain.csproj.AssemblyReference.cache
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\obj\Debug\net6.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\obj\Debug\net6.0\Domain.AssemblyInfoInputs.cache
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\obj\Debug\net6.0\Domain.AssemblyInfo.cs
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\obj\Debug\net6.0\Domain.csproj.CoreCompileInputs.cache
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\obj\Debug\net6.0\Domain.dll
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\obj\Debug\net6.0\ref\Domain.dll
+C:\TRMO\RiderProjects\BlazorTodoApp\Domain\obj\Debug\net6.0\Domain.pdb
