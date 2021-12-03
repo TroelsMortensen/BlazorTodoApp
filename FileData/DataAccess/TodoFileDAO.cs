@@ -12,28 +12,39 @@ public class TodoFileDAO : ITodoService
         this.fileContext = fileContext;
     }
 
-    public Task<ICollection<Todo>> GetAsync()
+    public async Task<ICollection<Todo>> GetAsync()
     {
-        throw new NotImplementedException();
+        ICollection<Todo> todos = fileContext.Todos;
+        return todos;
     }
 
-    public Task<Todo> GetById(int id)
+    public async Task<Todo> GetById(int id)
     {
-        throw new NotImplementedException();
+        return fileContext.Todos.First(t => t.Id == id);
     }
 
-    public Task<Todo> AddAsync(Todo todo)
+    public async Task<Todo> AddAsync(Todo todo)
     {
-        throw new NotImplementedException();
+        int largestId = fileContext.Todos.Max(t => t.Id);
+        int nextId = largestId + 1;
+        todo.Id = nextId;
+        fileContext.Todos.Add(todo);
+        fileContext.SaveChanges();
+        return todo;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        Todo toDelete = fileContext.Todos.First(t => t.Id == id);
+        fileContext.Todos.Remove(toDelete);
+        fileContext.SaveChanges();
     }
 
-    public Task UpdateAsync(Todo todo)
+    public async Task UpdateAsync(Todo todo)
     {
-        throw new NotImplementedException();
+        Todo toUpdate = fileContext.Todos.First(t => t.Id == todo.Id);
+        toUpdate.IsCompleted = todo.IsCompleted;
+        toUpdate.OwnerId = todo.OwnerId;
+        fileContext.SaveChanges();
     }
 }
