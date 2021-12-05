@@ -1,8 +1,8 @@
 ﻿using Domain.Models;
 
-namespace Blazor.Services;
+namespace Domain.Contracts;
 
-public interface ITodoService
+public interface ITodoHome
 {
     public Task<ICollection<Todo>> GetAsync();
     public Task<Todo> GetById(int id);

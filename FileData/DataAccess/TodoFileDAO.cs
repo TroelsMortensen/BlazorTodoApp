@@ -1,9 +1,9 @@
-﻿using Blazor.Services;
+﻿using Domain.Contracts;
 using Domain.Models;
 
 namespace FileData.DataAccess;
 
-public class TodoFileDAO : ITodoService
+public class TodoFileDAO : ITodoHome
 {
     private FileContext fileContext;
 
