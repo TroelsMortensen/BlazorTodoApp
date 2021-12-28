@@ -22,28 +22,60 @@ else
     <table class="table">
         <thead>
         <tr>
-            <th>Owner ID</th> <th>Todo ID</th> <th>Title</th> <th>Completed?</th>
+            <th>Owner ID</th>
+            <th>Todo ID</th>
+            <th>Title</th>
+            <th>Completed?</th>
+            <th>Remove</th>
         </tr>
         </thead>
         <tbody>
         @foreach (var item in todos)
         {
             <tr>
-                <td>@item.OwnerId</td> <td>@item.Id</td> <td>@item.Title</td> <td>@item.IsCompleted</td>
+                <td>@item.OwnerId</td> 
+                <td>@item.Id</td> 
+                <td>@item.Title</td> 
+                <td>@item.IsCompleted</td>
+                <td>
+                    <label @onclick="@(() => RemoveTodo(item.Id))" style="cursor:pointer; color: red; font-weight: bold">
+                        &#x2717;
+                    </label>
+                </td>
             </tr>
         }
         </tbody>
     </table>
 }
+@if (!string.IsNullOrEmpty(errorLabel))
+{
+    <label style="color: red">@errorLabel</label>
+}
 
 
 @code {
- 
+
     private ICollection<Todo> todos;
+    private string errorLabel;
 
     protected override async Task OnInitializedAsync()
     {
         todos = await TodoHome.GetAsync();
+    }
+
+    private async Task RemoveTodo(int id)
+    {
+        errorLabel = "";
+        try
+        {
+            Todo todoToRemove = todos.First(todo => todo.Id == id);
+            await TodoHome.DeleteAsync(id);
+            todos.Remove(todoToRemove);
+        }
+        catch (Exception e)
+        {
+            errorLabel = e.Message;
+        }
     }
 
 }
