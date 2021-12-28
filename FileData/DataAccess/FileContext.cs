@@ -6,23 +6,15 @@ namespace FileData.DataAccess;
 public class FileContext
 {
     private string todoFilePath = "todos.json";
-    private ICollection<Todo> todos;
+    public ICollection<Todo> Todos { get; private set; }
 
-    public ICollection<Todo> Todos
-    {
-        get
-        {
-            LoadData();
-            return todos;
-        }
-    }
-    
     public FileContext()
     {
         if (!File.Exists(todoFilePath))
         {
             Seed();
         }
+        LoadData();
     }
 
     private void Seed()
@@ -45,19 +37,19 @@ public class FileContext
                 Id = 5,
             },
         };
-        todos = ts.ToList();
+        Todos = ts.ToList();
         SaveChanges();
     }
 
     public void SaveChanges()
     {
-        string serialize = JsonSerializer.Serialize(todos);
+        string serialize = JsonSerializer.Serialize(Todos);
         File.WriteAllText(todoFilePath,serialize);
     }
 
     private void LoadData()
     {
         string content = File.ReadAllText(todoFilePath);
-        todos = JsonSerializer.Deserialize<List<Todo>>(content);
+        Todos = JsonSerializer.Deserialize<List<Todo>>(content);
     }
 }
