@@ -7,7 +7,7 @@
 
 <div class="filterbar">
     <div class="filterscontainer">
-        <img src="img/@(doShowFilters?"clear_" : "")funnel.png" class="funnel" @onclick="OpenCloseFilters"/>
+        <img src="img/@(doShowFilters ? "clear_" : "")funnel.png" class="funnel" @onclick="OpenCloseFilters"/>
         @if (doShowFilters)
         {
             <div class="filter">
@@ -61,6 +61,7 @@ else
             <th>Todo ID</th>
             <th>Title</th>
             <th>Completed?</th>
+            <th>Edit</th>
             <th>Remove</th>
         </tr>
         </thead>
@@ -71,11 +72,15 @@ else
                 <td>@item.OwnerId</td>
                 <td>@item.Id</td>
                 <td>@item.Title</td>
+
                 <td>
                     <label class="switch">
                         <input type="checkbox" checked=@item.IsCompleted @onchange="@((arg) => ToggleStatus((bool)arg.Value, item))">
                         <span class="slider round"></span>
                     </label>
+                </td>
+                <td>
+                    
                 </td>
                 <td>
                     <label @onclick="@(() => RemoveTodo(item.Id))" style="cursor:pointer; color: red; font-weight: bold">
@@ -162,7 +167,7 @@ else
         {
             return;
         }
-        
+
         ownerIdFilter = idFilter;
         ApplyFilters();
     }
@@ -194,4 +199,5 @@ else
             todosToShow = todosToShow.Where(todo => todo.OwnerId == ownerIdFilter).ToList();
         }
     }
+
 }
