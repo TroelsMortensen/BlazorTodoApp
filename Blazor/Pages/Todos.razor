@@ -2,6 +2,7 @@
 @using Domain.Models
 @using Domain.Contracts
 @inject ITodoHome TodoHome
+@inject NavigationManager navMgr
 
 <h3>Todos</h3>
 
@@ -72,7 +73,6 @@ else
                 <td>@item.OwnerId</td>
                 <td>@item.Id</td>
                 <td>@item.Title</td>
-
                 <td>
                     <label class="switch">
                         <input type="checkbox" checked=@item.IsCompleted @onchange="@((arg) => ToggleStatus((bool)arg.Value, item))">
@@ -80,7 +80,7 @@ else
                     </label>
                 </td>
                 <td>
-                    
+                    <img src="img/edit.gif" class="funnel" @onclick="@(() => Edit(item.Id))"/>
                 </td>
                 <td>
                     <label @onclick="@(() => RemoveTodo(item.Id))" style="cursor:pointer; color: red; font-weight: bold">
@@ -198,6 +198,11 @@ else
         {
             todosToShow = todosToShow.Where(todo => todo.OwnerId == ownerIdFilter).ToList();
         }
+    }
+
+    private void Edit(int itemId)
+    {
+        navMgr.NavigateTo($"EditTodo/{itemId}");
     }
 
 }
