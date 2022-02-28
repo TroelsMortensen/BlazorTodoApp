@@ -95,6 +95,18 @@ else
     <label style="color: red">@errorLabel</label>
 }
 
+@if (showModal)
+{
+    <Modal 
+        Title="Update Todo" 
+        AcceptButtonText="Okay" 
+        OnAcceptButton="" 
+        OnCloseButton="() => showModal = false">
+
+
+    </Modal>
+}
+
 
 @code {
 
@@ -104,6 +116,8 @@ else
     private int? ownerIdFilter;
     private bool? isCompletedFilter;
     private bool doShowFilters;
+
+    private bool showModal;
 
     protected override async Task OnInitializedAsync()
     {
