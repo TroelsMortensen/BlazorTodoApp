@@ -1,4 +1,6 @@
-﻿using Domain.Models;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Domain.Models;
 
 namespace Domain.Contracts;
 
