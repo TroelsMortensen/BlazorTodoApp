@@ -6,7 +6,21 @@ namespace FileData.DataAccess;
 public class FileContext
 {
     private string todoFilePath = "todos.json";
-    public ICollection<Todo> Todos { get; private set; }
+
+    private ICollection<Todo>? todos;
+
+    public ICollection<Todo> Todos
+    {
+        get
+        {
+            if (todos == null)
+            {
+                LoadData();
+            }
+
+            return todos!;
+        }
+    }
 
     public FileContext()
     {
@@ -14,42 +28,47 @@ public class FileContext
         {
             Seed();
         }
-        LoadData();
     }
 
     private void Seed()
     {
-        
-        Todo[] ts = {
-            new Todo(1, "Dishes") {
+        Todo[] ts =
+        {
+            new Todo(1, "Dishes")
+            {
                 Id = 1,
             },
-            new Todo(1, "Walk the dog") {
+            new Todo(1, "Walk the dog")
+            {
                 Id = 1,
             },
-            new Todo(2, "Do DNP homework") {
+            new Todo(2, "Do DNP homework")
+            {
                 Id = 3,
             },
-            new Todo(3, "Eat breakfast") {
+            new Todo(3, "Eat breakfast")
+            {
                 Id = 4,
             },
-            new Todo(4, "Mow lawn") {
+            new Todo(4, "Mow lawn")
+            {
                 Id = 5,
             },
         };
-        Todos = ts.ToList();
+        todos = ts.ToList();
         SaveChanges();
     }
 
     public void SaveChanges()
     {
         string serialize = JsonSerializer.Serialize(Todos);
-        File.WriteAllText(todoFilePath,serialize);
+        File.WriteAllText(todoFilePath, serialize);
+        todos = null;
     }
 
     private void LoadData()
     {
         string content = File.ReadAllText(todoFilePath);
-        Todos = JsonSerializer.Deserialize<List<Todo>>(content);
+        todos = JsonSerializer.Deserialize<List<Todo>>(content);
     }
 }
