@@ -1,33 +1,8 @@
 ﻿@namespace UIElements
 
-<div class="modal" tabindex="-1" style="display:block" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-
-                <h3 class="modal-title">@Title</h3>
-                <button type="button" class="close" @onclick="() => OnCloseButton.InvokeAsync()">
-                    <span aria-hidden="true">X</span>
-                </button>
-
-            </div>
-            <div class="modal-body">
-
-                @ChildContent
-
-            </div>
-            <div class="modal-footer">
-
-                <button class="btn btn-block btn-info" @onclick="() => OnAcceptButton.InvokeAsync()" data-dismiss="modal">@AcceptButtonText</button>
-
-                @if (!string.IsNullOrEmpty(errorLabel))
-                {
-                    <label style="color:red">
-                        @errorLabel
-                    </label>
-                }
-            </div>
-        </div>
+<div class="modal-background" style="display:block; height: 100%">
+    <div class="modal-box">
+        @ChildContent
     </div>
 </div>
 
@@ -35,20 +10,5 @@
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
-
-    [Parameter]
-    public string Title { get; set; }
-
-    [Parameter]
-    public string AcceptButtonText { get; set; }
-
-    [Parameter]
-    public string errorLabel { get; set; }
-
-    [Parameter]
-    public EventCallback OnCloseButton { get; set; }
-
-    [Parameter]
-    public EventCallback OnAcceptButton { get; set; }
 
 }
