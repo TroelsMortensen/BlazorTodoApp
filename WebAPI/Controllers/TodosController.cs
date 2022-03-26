@@ -43,4 +43,49 @@ public class TodosController : ControllerBase
             return StatusCode(500, e.Message);
         }
     }
+
+    
+    [HttpGet]
+    [Route("{id:int}")]
+    public async Task<ActionResult<Todo>> GetTodoById([FromRoute] int id)
+    {
+        try
+        {
+            Todo todo = await todoHome.GetByIdAsync(id);
+            return todo;
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }
+    }
+
+    [HttpDelete]
+    [Route("{id:int}")]
+    public async Task<ActionResult> DeleteTodoById([FromRoute] int id)
+    {
+        try
+        {
+            await todoHome.DeleteAsync(id);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        } 
+    }
+
+    [HttpPatch]
+    public async Task<ActionResult> Update([FromBody] Todo todo)
+    {
+        try
+        {
+            await todoHome.UpdateAsync(todo);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return StatusCode(500, e.Message);
+        }  
+    }
 }
