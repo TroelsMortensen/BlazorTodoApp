@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blazor", "Blazor\Blazor.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileData", "FileData\FileData.csproj", "{175D7A15-7454-4712-92BC-B1590B81805C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{4AAD03A2-8DF5-4210-9C7E-2EEC8AB9890F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{175D7A15-7454-4712-92BC-B1590B81805C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{175D7A15-7454-4712-92BC-B1590B81805C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{175D7A15-7454-4712-92BC-B1590B81805C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AAD03A2-8DF5-4210-9C7E-2EEC8AB9890F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AAD03A2-8DF5-4210-9C7E-2EEC8AB9890F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AAD03A2-8DF5-4210-9C7E-2EEC8AB9890F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AAD03A2-8DF5-4210-9C7E-2EEC8AB9890F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
