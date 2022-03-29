@@ -54,13 +54,32 @@ public class TodoHttpClient : ITodoHome
         return returned;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        using HttpClient client = new();
+        HttpResponseMessage response = await client.DeleteAsync($"https://localhost:7204/todos/{id}");
+        string content = await response.Content.ReadAsStringAsync();
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Error: {response.StatusCode}, {content}");
+        }
     }
 
-    public Task UpdateAsync(Todo todo)
+    public async Task UpdateAsync(Todo todo)
     {
-        throw new NotImplementedException();
+        using HttpClient client = new();
+
+        string todoAsJson = JsonSerializer.Serialize(todo);
+
+        StringContent content = new(todoAsJson, Encoding.UTF8, "application/json");
+
+        HttpResponseMessage response = await client.PatchAsync("https://localhost:7204/todos", content);
+        string responseContent = await response.Content.ReadAsStringAsync();
+        
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new Exception($"Error: {response.StatusCode}, {responseContent}");
+        }
     }
 }
