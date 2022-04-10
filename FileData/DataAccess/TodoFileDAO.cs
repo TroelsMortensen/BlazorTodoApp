@@ -18,6 +18,11 @@ public class TodoFileDAO : ITodoHome
         return todos;
     }
 
+    public Task<ICollection<Todo>> GetAsync(int? userId, bool? isCompleted)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<Todo> GetByIdAsync(int id)
     {
         return fileContext.Todos.First(t => t.Id == id);

@@ -22,6 +22,23 @@ public class TodoSqliteDAO : ITodoHome
         return todos;
     }
 
+    public async Task<ICollection<Todo>> GetAsync(int? userId, bool? isCompleted)
+    {
+        IQueryable<Todo> todos = context.Todos.AsQueryable();
+        if (userId != null)
+        {
+            todos = todos.Where(todo => todo.OwnerId == userId);
+        }
+
+        if (isCompleted != null)
+        {
+            todos = todos.Where(todo => todo.IsCompleted == isCompleted);
+        }
+
+        ICollection<Todo> result = await todos.ToListAsync();
+        return result;
+    }
+
     public Task<Todo> GetByIdAsync(int id)
     {
         throw new NotImplementedException();
@@ -34,13 +51,21 @@ public class TodoSqliteDAO : ITodoHome
         return added.Entity;
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        Todo? existing = await context.Todos.FindAsync(id);
+        if (existing is null)
+        {
+            throw new Exception($"Could not find Todo with id {id}. Nothing was deleted");
+        }
+
+        context.Todos.Remove(existing);
+        await context.SaveChangesAsync();
     }
 
     public Task UpdateAsync(Todo todo)
     {
-        throw new NotImplementedException();
+        context.Todos.Update(todo);
+        return context.SaveChangesAsync();
     }
 }

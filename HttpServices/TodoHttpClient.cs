@@ -25,6 +25,11 @@ public class TodoHttpClient : ITodoHome
         return todos;
     }
 
+    public Task<ICollection<Todo>> GetAsync(int? userId, bool? isCompleted)
+    {
+        throw new NotImplementedException();
+    }
+
     public Task<Todo> GetByIdAsync(int id)
     {
         throw new NotImplementedException();
