@@ -9,7 +9,7 @@ public class Todo
     [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
     public int OwnerId { get; set; }
 
-    [Required, MaxLength(128)] public string Title { get; set; }
+    [Required, MaxLength(128)] public string Title { get; set; } = null!;
     public bool IsCompleted { get; set; }
 
     public Todo(int ownerId, string title)
